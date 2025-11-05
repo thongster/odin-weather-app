@@ -25,6 +25,14 @@ async function fetchData() {
         console.log(data.currentConditions.temp)
         console.log(data.currentConditions.feelslike)
         console.log(data.timezone, data.tzoffset)
+
+        const tempF = data.currentConditions.temp
+        const feelslikeF = data.currentConditions.feelslike
+        const tempC = Math.round(5 / 9 * (tempF - 32) * 10) / 10
+        const feelslikeC = Math.round(5 / 9 * (feelslikeF - 32) * 10) / 10
+
+        console.log(`Temp in Celcius: ${tempC}`)
+        console.log (`Feels Like in Celcius: ${feelslikeC}`)
         // img.src = dataTop.data.images.original.url
     } catch(error) {
         console.error(error)
