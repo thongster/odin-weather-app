@@ -4,6 +4,10 @@ const form = document.getElementById("searchForm")
 const search = document.getElementById("searchWeather")
 const button = document.getElementById("getWeatherButton")
 
+// inside display
+const resolvedAddress = document.getElementById("resolvedAddress")
+const condition = document.getElementById("condition")
+
 form.addEventListener("submit", (e) => {
     e.preventDefault()
     fetchData()
@@ -19,10 +23,12 @@ async function fetchData() {
         const data = await response.json()
         console.log(data)
         console.log(data.resolvedAddress)
+        resolvedAddress.textContent = data.resolvedAddress
         console.log(data.currentConditions.icon)
         console.log(data.currentConditions.datetime)
         console.log(data.description)
         console.log(data.currentConditions.conditions)
+        condition.textContent = data.currentConditions.conditions
         console.log(data.currentConditions.temp)
         console.log(data.currentConditions.feelslike)
         console.log(data.timezone, data.tzoffset)
