@@ -18,6 +18,7 @@ async function fetchData() {
         }
         const data = await response.json()
         console.log(data)
+        console.log(data.resolvedAddress)
         console.log(data.currentConditions.icon)
         console.log(data.currentConditions.datetime)
         console.log(data.description)
