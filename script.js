@@ -3,6 +3,11 @@
 const form = document.getElementById("searchForm")
 const search = document.getElementById("searchWeather")
 const button = document.getElementById("getWeatherButton")
+const icon = document.getElementById("icon")
+const temp = document.getElementById("temp")
+const description = document.getElementById("description")
+const date = document.getElementById("date")
+const time = document.getElementById("time")
 
 // inside display
 const resolvedAddress = document.getElementById("resolvedAddress")
@@ -24,12 +29,16 @@ async function fetchData() {
         console.log(data)
         console.log(data.resolvedAddress)
         resolvedAddress.textContent = data.resolvedAddress
-        console.log(data.currentConditions.icon)
-        console.log(data.currentConditions.datetime)
-        console.log(data.description)
-        console.log(data.currentConditions.conditions)
         condition.textContent = data.currentConditions.conditions
-        console.log(data.currentConditions.temp)
+
+        time.textContent = data.currentConditions.datetime
+        console.log(data.currentConditions.datetime)
+
+        // figure out icon import
+        console.log(data.currentConditions.icon)
+        temp.textContent = `${data.currentConditions.temp}°F`
+        description.textContent = data.description
+
         console.log(data.currentConditions.feelslike)
         console.log(data.timezone, data.tzoffset)
 
