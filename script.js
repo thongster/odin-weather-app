@@ -7,9 +7,6 @@ const button = document.getElementById("getWeatherButton")
 const resolvedAddress = document.getElementById("resolvedAddress")
 const condition = document.getElementById("condition")
 
-const date = document.getElementById("date")
-const time = document.getElementById("time")
-
 const icon = document.getElementById("icon")
 const temp = document.getElementById("temp")
 const description = document.getElementById("description")
@@ -35,8 +32,6 @@ async function fetchData() {
 
         resolvedAddress.textContent = data.resolvedAddress
         condition.textContent = data.currentConditions.conditions
-
-        time.textContent = data.currentConditions.datetime
 
         // figure out icon import
         console.log(data.currentConditions.icon)
