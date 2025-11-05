@@ -41,9 +41,6 @@ async function fetchData() {
         humidity.textContent = `${data.currentConditions.humidity}%`
         wind.textContent = `${data.currentConditions.windspeed}km/h`
         feelslike.textContent = `${data.currentConditions.feelslike}°F`
-        console.log(data.currentConditions.humidity)
-        console.log(data.currentConditions.feelslike)
-        console.log(data.currentConditions.windspeed)
 
         const tempF = data.currentConditions.temp
         const feelslikeF = data.currentConditions.feelslike
@@ -56,4 +53,11 @@ async function fetchData() {
     } catch(error) {
         console.error(error)
     }
+}
+
+function convertToC(tempF, feelslikeF) {
+    const tempC = Math.round(5 / 9 * (tempF - 32) * 10) / 10
+    const feelslikeC = Math.round(5 / 9 * (feelslikeF - 32) * 10) / 10
+    temp.textContent = `${data.currentConditions.temp}°C`
+    feelslike.textContent = `${data.currentConditions.feelslike}°C`
 }

@@ -50,9 +50,9 @@ header {
     justify-content: center;
     align-items: start;
     width: 100%;
-    height: 7rem;
+    height: 8rem;
     gap: 0.5rem;
-    padding: 1rem;
+    padding: 2rem;
     background: linear-gradient(to bottom right, #616161, #7d858a, #616161);
     border-top-left-radius: 18px;
     border-top-right-radius: 18px;
@@ -70,7 +70,7 @@ header {
     justify-content: space-between;
     align-items: center; 
     gap: 0.5rem;
-    padding: 2rem 1rem;
+    padding: 3rem;
     width: 100%;
     height: 100%;
 }
