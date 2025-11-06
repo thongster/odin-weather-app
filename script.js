@@ -40,12 +40,40 @@ const humidity = document.getElementById('humidity');
 const wind = document.getElementById('wind');
 const feelslike = document.getElementById('feelslike');
 
+const convertButton = document.getElementById('convertTemp');
+
 initialDisplay()
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   fetchData();
 });
+
+let isCelcius = false
+convertButton.addEventListener('click', convertToC)
+
+function convertToC() {
+    if (isCelcius === false) {
+        const tempF = parseFloat(temp.textContent)
+        const feelslikeF = parseFloat(feelslike.textContent)
+        const tempC = Math.round((5 / 9) * (tempF - 32) * 10) / 10;
+        const feelslikeC = Math.round((5 / 9) * (feelslikeF - 32) * 10) / 10;
+        temp.textContent = `${tempC}°C`;
+        feelslike.textContent = `${feelslikeC}°C`;
+        isCelcius = true
+        return;
+    } 
+    if (isCelcius === true) {
+        const tempC = parseFloat(temp.textContent)
+        const feelslikeC = parseFloat(feelslike.textContent)
+        const tempF = ((tempC * (9 / 5) + 32)).toFixed(1)
+        const feelslikeF = ((feelslikeC * (9 / 5) + 32)).toFixed(1)
+        temp.textContent = `${tempF}°F`
+        feelslike.textContent = `${feelslikeF}°F`
+        isCelcius = false
+        return;
+    }
+}
 
 async function initialDisplay() {
     const location = "Paris fr";
@@ -70,7 +98,6 @@ async function fetchData() {
     }
     const result = await response.json();
     displayData(result)
-    // img.src = dataTop.data.images.original.url
   } catch (error) {
     console.error(error);
   }
@@ -100,11 +127,4 @@ function displayData(result) {
     const feelslikeF = data.currentConditions.feelslike;
     const tempC = Math.round((5 / 9) * (tempF - 32) * 10) / 10;
     const feelslikeC = Math.round((5 / 9) * (feelslikeF - 32) * 10) / 10;
-}
-
-function convertToC(tempF, feelslikeF) {
-  const tempC = Math.round((5 / 9) * (tempF - 32) * 10) / 10;
-  const feelslikeC = Math.round((5 / 9) * (feelslikeF - 32) * 10) / 10;
-  temp.textContent = `${data.currentConditions.temp}°C`;
-  feelslike.textContent = `${data.currentConditions.feelslike}°C`;
 }
