@@ -40,10 +40,24 @@ const humidity = document.getElementById('humidity');
 const wind = document.getElementById('wind');
 const feelslike = document.getElementById('feelslike');
 
+initialDisplay()
+
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   fetchData();
 });
+
+async function initialDisplay() {
+    const location = "Paris fr";
+    const response = await fetch(
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=5XF6Z9YQS855HGSV5HXPV5VAV`
+    );
+    if (!response.ok) {
+      throw new Error('There is an error');
+    }
+    const result = await response.json();
+    displayData(result)    
+}
 
 async function fetchData() {
   try {
@@ -52,10 +66,9 @@ async function fetchData() {
       `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=5XF6Z9YQS855HGSV5HXPV5VAV`
     );
     if (!response.ok) {
-      throw new Error('you are gae');
+      throw new Error('There is an error');
     }
     const result = await response.json();
-    console.log(result)
     displayData(result)
     // img.src = dataTop.data.images.original.url
   } catch (error) {
